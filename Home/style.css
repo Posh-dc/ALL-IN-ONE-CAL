@@ -1,0 +1,60 @@
+body {
+     background: #27374d;
+}
+
+div{
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes movement {
+    0% {
+         bottom: -100px;
+         left: -60px;
+         opacity: 0;
+    }
+    25% {
+        bottom: -75px;
+        left: -45px;
+        opacity: 0.15;
+    }
+    50% {
+        bottom: -50px;
+        left: -30px;
+        opacity: 0.30;
+    }
+    75% {
+          bottom:-25px;
+          left: -15px;
+          opacity: 0.5;
+    }
+    100% {
+          bottom: 0;
+          left: 0;
+          opacity: 1;
+    }
+}
+
+div > a {
+      color: #dde6ed;
+      position: relative;
+      padding: 0.5em 0;
+      font-size: 0.8rem;
+      text-decoration: none;
+      visibility: hidden;
+}
+
+.animation {
+    animation: movement 1s linear;
+    visibility: visible;
+}
+
+@media (min-width: 640px) {
+    div > a {
+        font-size: 1rem;
+        color: black;
+  }
+}
