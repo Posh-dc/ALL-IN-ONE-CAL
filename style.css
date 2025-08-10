@@ -1,5 +1,6 @@
 body {
-     background: #27374d;
+     background: #526d82;
+     box-sizing: border-box;
 }
 
 div{
@@ -41,10 +42,15 @@ div{
 div > a {
       color: #dde6ed;
       position: relative;
-      padding: 0.5em 0;
+      padding: 0.5em 0.7em ;
       font-size: 0.8rem;
       text-decoration: none;
       visibility: hidden;
+      background-color: #27374d;
+      margin-bottom: 2%;
+      border:dotted 0.1rem pink ;
+      border-radius: 5%;
+     box-shadow: 2px 3px 6px 0.8px rgb(38, 37, 37);
 }
 
 .animation {
@@ -54,7 +60,7 @@ div > a {
 
 @media (min-width: 640px) {
     div > a {
-        font-size: 1rem;
+        font-size: 1.2rem;
         color: black;
   }
 }
