@@ -8,24 +8,26 @@ html, body {
 
 .main {
     background-color: #27374d;
-    width: 85%;
+    width: 90%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 1.2rem auto 0 ;
-    padding: 3% 2% 0;
-     box-shadow: 4px 6px 25px 5px rgb(38, 37, 37);
+    justify-content: space-between;
+    margin: 1.3rem auto 0 ;
+    padding: 2rem 2rem 2rem;
+    box-shadow: 4px 6px 25px 5px rgb(38, 37, 37);
+    font-size: 1vh;
 }
 
 .inpt {
      display: flex;
      flex-direction: column;
      justify-content: end;
-     width: 90%;
+     width: 98%;
      height: 35%;
      border: 2px solid rgb(244, 243, 243);
-     box-shadow: 2px 3px 30px 5px rgb(141, 95, 95);
+     box-shadow: 0px 1px 30px 2px rgb(141, 95, 95);
 }
 input {
     height: 35%;
@@ -33,11 +35,11 @@ input {
     background-color: transparent;
 }
 .firstInput {
-    font-size: 1.2rem;
+    font-size: 3.5em;
     color: #dde6ed;
 }
 .secondInput {
-    font-size: 0.8rem;
+    font-size: 2.8em;
     color: #9db2bf;
 }
 
@@ -45,20 +47,19 @@ button {
     border: none;
     background-color: #27374d;
     color: #dde6ed;
-    font-size: 2rem;
+    font-size: 5em;
      box-shadow: 0px 0px 15px 0px #526d82 ;
 }
 
 .btn {
-    width: 90%;
+    width: 98%;
     display: grid;
     grid: auto  / auto auto auto auto;
     grid-auto-flow: row;
     height: 53%;
     position: relative;
-    margin-top: 2rem;
     border:1px solid #9db2bf;
-     box-shadow: 0px 0px 15px 0px #526d82 ;
+    box-shadow: 0px 0px 15px 0px #526d82 ;
 }
 
 .equal {
