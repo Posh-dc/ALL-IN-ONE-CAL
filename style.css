@@ -49,7 +49,7 @@ div > a {
       visibility: hidden;
       background-color: #27374d;
       margin-bottom: 1em;
-      border:dotted 0.17em pink ;
+      border:dotted 0.15em pink ;
       border-radius: 5%;
      box-shadow: 2px 3px 6px 0.8px rgb(38, 37, 37);
 }
