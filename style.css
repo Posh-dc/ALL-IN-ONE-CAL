@@ -44,12 +44,12 @@ div > a {
       color: #dde6ed;
       position: relative;
       padding: 0.5em 0.7em ;
-      font-size: 2em;
+      font-size: 1.7em;
       text-decoration: none;
       visibility: hidden;
       background-color: #27374d;
-      margin-bottom: 1.2em;
-      border:dotted 0.15em pink ;
+      margin-bottom: 1em;
+      border:dotted 0.2em pink ;
       border-radius: 5%;
      box-shadow: 2px 3px 6px 0.8px rgb(38, 37, 37);
 }
