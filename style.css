@@ -9,6 +9,7 @@ div{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-size: 1vh;
 }
 
 @keyframes movement {
@@ -43,12 +44,12 @@ div > a {
       color: #dde6ed;
       position: relative;
       padding: 0.5em 0.7em ;
-      font-size: 0.8rem;
+      font-size: 2em;
       text-decoration: none;
       visibility: hidden;
       background-color: #27374d;
-      margin-bottom: 2%;
-      border:dotted 0.1rem pink ;
+      margin-bottom: 1.2em;
+      border:dotted 0.15em pink ;
       border-radius: 5%;
      box-shadow: 2px 3px 6px 0.8px rgb(38, 37, 37);
 }
@@ -60,7 +61,7 @@ div > a {
 
 @media (min-width: 640px) {
     div > a {
-        font-size: 1.2rem;
+        /* font-size: 2em; */
         color: black;
   }
 }

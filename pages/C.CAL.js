@@ -36,6 +36,11 @@ function functionalCal(){  
             inputResult = "";
             document.querySelector(".firstInput").setAttribute("value", visualInputData);
             document.querySelector(".secondInput").setAttribute("value", inputResult);
+// ///// adding Animation to the equal button   //////
+      document.querySelector(".equal").classList.add("active");
+      setTimeout(()=>{
+        document.querySelector(".equal").classList.remove("active");
+      }, 1000);
     }
 }
 
@@ -50,6 +55,7 @@ if ((visualInputData ==="" && containOperatorAsFirst.includes(this.getAttribute(
               document.querySelector(".secondInput").setAttribute("value", inputResult);
              return;
       }
+
              let containOperator = ['÷','x','-','+','.'];
       if (containOperator.includes(visualInputData.at(-1))&&(this.classList.contains("operator"))){
         // Preventing stacking up operators ///////
@@ -59,6 +65,11 @@ if ((visualInputData ==="" && containOperatorAsFirst.includes(this.getAttribute(
          document.querySelector(".secondInput").setAttribute("value", inputResult);
             return;
       }
+if (this.innerHTML === ".") {
+    let parts = visualInputData.split(/[\+\-÷x]/);
+    let lastPart = parts[parts.length - 1];
+    if (lastPart.includes(".")) return;
+ }
        
       if (visualInputData === "" && this.innerHTML ==="-"){
         // The way i want a leading minus tp be handled 
