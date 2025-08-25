@@ -59,9 +59,10 @@ div > a {
     visibility: visible;
 }
 
-@media (min-width: 640px) {
+@media (max-width: 1000px) and (orientation: landscape) {
     div > a {
-        /* font-size: 2em; */
+        font-size: 2em;
         color: black;
   }
+  
 }

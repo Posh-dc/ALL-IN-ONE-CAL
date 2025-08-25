@@ -2,6 +2,8 @@ let inputData = "";
 let visualInputData = "";
 let inputResult = "";
 
+window.addEventListener("load", ()=> document.querySelector(".main").classList.add("animate"));
+
  let buttonNumber = document.querySelectorAll(".show").length; /*looping through all the button to set the value of the input*/
 for (let i=0; i<buttonNumber; i++) {
    document.querySelectorAll(".show")[i].addEventListener("click", parametersCal);
@@ -30,7 +32,8 @@ function functionalCal(){  
         inputResult= expressionEvaluation(inputData);
         document.querySelector(".secondInput").setAttribute("value", inputResult);
     }
-    if (this.classList.contains("equal") && inputResult !== ""){   /*when equal button is pressed*/
+ if (this.classList.contains("equal") && inputResult !== "" && inputResult !=="Bad expression"){ /*when equal button is pressed*/
+    /*when equal button is pressed*/
             inputData = "0"+ inputResult.toString();
              visualInputData = inputResult.toString();
             inputResult = "";
@@ -146,7 +149,7 @@ if (this.innerHTML === ".") {
         for (let i=0; i<cal.length; i++){
             if(cal[i]==="*" || cal[i]==="/"){    /* then working on multiplication and division */
                 /*converting data to number*/
-                 let firstDataNumber = parseFloat(cal[i-1]);
+                  let firstDataNumber = parseFloat(cal[i-1]);
                  let secondDataNumber = parseFloat(cal[i+1]);
                 result= calculating(firstDataNumber,cal[i],secondDataNumber);
 
@@ -166,7 +169,8 @@ if (this.innerHTML === ".") {
                 i=0;
             }
          }
-         return result;
+   return (!isNaN(result)) ?  result : "Bad expression";
+        
     }
 
 // calculating function
