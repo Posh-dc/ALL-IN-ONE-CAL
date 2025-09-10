@@ -79,11 +79,18 @@ html, body {
     font-size: 0.8rem;
     position: relative;
 }
+sup {
+    color: #dde6ed;
+    font-size: 0.5rem;
+    position: relative;
+    top: 0.1rem;
+    left: 0.1rem;
+}
 
 .secondInput {
     position: relative;
     /* width: 100%; */
-    height: 15%;
+    height: 13%;
 }
 
 .secondInput input{
