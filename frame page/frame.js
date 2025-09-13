@@ -209,7 +209,7 @@ function sendOut (){
     }
       parent.postMessage(sendOutput, '*');
       parent.document.querySelector("#dialog").close();
-    //   inputData ="";
+      inputData ="";
       visualInputData ="";
      document.querySelector(".firstInput").setAttribute("value", visualInputData);
 } 
