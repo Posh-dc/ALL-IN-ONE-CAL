@@ -13,11 +13,10 @@ html, body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
-    margin: 1.3rem auto 0 ;
-    padding: 0.5rem;
+    margin: 5em auto 0 ;
+    padding: 0.5rem 0.8rem;
     box-shadow: 4px 6px 25px 3px rgb(38, 37, 37);
-    font-size: 1vw;
+    font-size: 1vh;
     visibility: hidden;
     position: relative;
 }
@@ -52,11 +51,14 @@ html, body {
 .firstInput {
     display: flex;
     flex-direction: row;
-    height: 15%;
+    height: 12%;
     align-items: center;
     position: relative;
-    gap: 1em;
+    gap: 0.3em;
     margin: 0;
+    font-size: 2em;
+     color: #9db2bf;
+    
 }
 
 .firstInput input {
@@ -65,25 +67,27 @@ html, body {
     border-radius: 0.5rem;
     background: none;
     direction: rtl;
-    padding-top: 0.5rem;
     padding-right: 0.6rem;
+    text-align: right;
+    direction: ltr;
+    color: #dde6ed;
 }
 
 .firstInput input::placeholder {
     color: #9db2bf;
-    font-size: 2.1em;           
+    font-size: 1.8em;           
 }
 
 .firstInput p {
     color: #dde6ed;
-    font-size: 0.8rem;
+    font-size: 1em;
     position: relative;
 }
 
 .secondInput {
     position: relative;
     /* width: 100%; */
-    height: 15%;
+    height: 12%;
 }
 
 .secondInput input{
@@ -91,28 +95,36 @@ html, body {
     height: 100%;
     border-radius: 0.5rem;
     background: none;  
+    color: #dde6ed;
+    font-size: 2.5em;
+    padding-left: 0.6rem;
+}
+.secondInput input::placeholder{
+    font-size: 1.3em;
+    padding-left: 0.5rem;
+     color: #9db2bf;
 }
 .secondInput h3 {
      color: #dde6ed;
-    font-size: 1rem;
+    font-size: 2.2em;
     position: relative;
-    margin: 0 0 0.2rem 1rem;
+    margin: 1em 0 0.5em 1em;
 }
 
 .firstH3 {
     position: relative;
     height: 10%;
     color: #9db2bf;
-    font-size: 0.6rem;
+    font-size: 1.7em;
     align-self: center;
-    margin: 0.4rem 0 3rem;
+    /* margin: 1em 0 1em; */
 }
 
 .heading {
    position: relative;
-   font-size: 0.7rem;
+   font-size: 2em;
    color: #dde6ed;
-   margin-top: 1rem;
+   /* margin-top: 2em; */
    margin-left: 1rem;
 }
 
@@ -132,4 +144,26 @@ iframe {
     width: 100%;
     height: 100%;
     border-radius: 0.8rem;
+}
+
+.btn {
+    background: none;
+    font-size: 2.2em;
+    display: block;
+    position: relative;
+    margin: 3em auto;
+    padding: 0.5em 1.3em;
+    border-radius: 0.2rem;
+    color: #dde6ed;
+}
+
+.clr {
+    position: absolute;
+    right: 0.5rem;
+    background: none;
+    font-size: 1em;
+    display: block;
+    padding: 0.3em 1em;
+    border-radius: 0.rem;
+    color: #dde6ed;
 }

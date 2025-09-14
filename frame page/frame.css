@@ -24,7 +24,7 @@ html, body {
 }
 
 .animate {
-    animation: movement 1.3s linear;
+    animation: movement 0.3s linear;
     visibility: visible;
 }
 @keyframes movement {

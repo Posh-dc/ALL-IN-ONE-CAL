@@ -5,7 +5,9 @@ myDialog = document.querySelector("#dialog");
 inptNum = document.querySelectorAll(".inpt");
 
 for (i=0; i < inptNum.length; i++){
-     inptNum[i].addEventListener("click",  () => myDialog.showModal());
+     inptNum[i].addEventListener("click",  () => { myDialog.showModal();
+     document.getElementById("r").setAttribute("value", "");
+     });
 }
 
 window.addEventListener('message', getResult)
@@ -27,5 +29,14 @@ document.querySelector(".btn").addEventListener("click", calculating);
      let dataC = document.getElementById("c").getAttribute("value");
 
      let result = (((dataC)-(dataB))/(dataA));
+      result= !isNaN(result) ?  result : "";
       document.getElementById("r").setAttribute("value", result); 
+     
  } 
+
+ document.querySelector(".clr").addEventListener("click", () => {
+     for (i=0; i < inptNum.length; i++){
+     inptNum[i].setAttribute("value", "");
+     document.getElementById("r").setAttribute("value", "");
+          }
+ })

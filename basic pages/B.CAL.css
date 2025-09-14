@@ -15,7 +15,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    margin: 1.3rem auto 0 ;
+    margin: 5em auto 0 ;
     padding: 1.5rem;
     box-shadow: 4px 6px 25px 3px rgb(38, 37, 37);
     font-size: 1vh;
