@@ -167,3 +167,11 @@ iframe {
     border-radius: 0.rem;
     color: #dde6ed;
 }
+
+@media (max-height: 460px) and (orientation: landscape) {
+    dialog {
+        width: 40%;
+        height: 80%;
+    }
+    
+}

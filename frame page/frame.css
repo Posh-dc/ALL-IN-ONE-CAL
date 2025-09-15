@@ -151,7 +151,7 @@ button {
 @media (max-height: 460px) and (orientation: landscape) {
     .main {
           flex-direction: row;
-          width: 65%;
+          /* width: 65%; */
           font-size: 1.7vh;
           margin-top: 2em;
     }
