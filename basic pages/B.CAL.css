@@ -148,9 +148,7 @@ button {
 }
 
 @media (max-height: 460px) and (orientation: landscape) {
-     html, body {
-        background: #27374d;
-     }
+    
     .main {
           flex-direction: row;
           width: 65%;
