@@ -153,8 +153,8 @@ button {
      }
     .main {
           flex-direction: row;
-          width: 50%;
-          font-size: 2vh;
+          width: 65%;
+          font-size: 1.7vh;
           margin-top: 2em;
     }
 
