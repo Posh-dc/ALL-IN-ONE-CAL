@@ -4,9 +4,10 @@ window.addEventListener("load", ()=> document.querySelector(".main").classList.a
 myDialog = document.querySelector("#dialog");
 inptNum = document.querySelectorAll(".inpt");
 
-for (i=0; i < inptNum.length; i++){
+for ( let i=0; i < inptNum.length; i++){
      inptNum[i].addEventListener("click",  () => { myDialog.showModal();
-     document.getElementById("r").setAttribute("value", "");
+     document.getElementById("x1").setAttribute("value", "");
+     document.getElementById("x2").setAttribute("value", "");
      });
 }
 
@@ -28,15 +29,20 @@ document.querySelector(".btn").addEventListener("click", calculating);
      let dataB = document.getElementById("b").getAttribute("value");
      let dataC = document.getElementById("c").getAttribute("value");
 
-     let result = (((dataC)-(dataB))/(dataA));
-      result= !isNaN(result) ?  result : "";
-      document.getElementById("r").setAttribute("value", result); 
+     let result1 = (((-1*(dataB))+(Math.sqrt((Math.pow(dataB,2)-(4*dataA*dataC)))))/(2*dataA));
+     let result2 = (((-1*(dataB))-(Math.sqrt((Math.pow(dataB,2)-(4*dataA*dataC)))))/(2*dataA));
+
+      result1 = !isNaN(result1) ?  result1 : "i";
+       result2 = !isNaN(result2) ?  result2 : "i";
+       document.getElementById("x1").setAttribute("value", result1);
+      document.getElementById("x2").setAttribute("value", result2); 
      
  } 
 
  document.querySelector(".clr").addEventListener("click", () => {
      for (i=0; i < inptNum.length; i++){
      inptNum[i].setAttribute("value", "");
-    //  document.getElementById("r").setAttribute("value", "");
+     document.getElementById("x1").setAttribute("value", "");
+     document.getElementById("x2").setAttribute("value", "");
           }
  })

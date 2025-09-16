@@ -4,7 +4,7 @@ window.addEventListener("load", ()=> document.querySelector(".main").classList.a
 myDialog = document.querySelector("#dialog");
 inptNum = document.querySelectorAll(".inpt");
 
-for (i=0; i < inptNum.length; i++){
+for ( let i=0; i < inptNum.length; i++){
      inptNum[i].addEventListener("click",  () => { myDialog.showModal();
      document.getElementById("r").setAttribute("value", "");
      });
