@@ -4,9 +4,10 @@ window.addEventListener("load", ()=> document.querySelector(".main").classList.a
 myDialog = document.querySelector("#dialog");
 inptNum = document.querySelectorAll(".inpt");
 
-for (i=0; i < inptNum.length; i++){
+for ( let i=0; i < inptNum.length; i++){
      inptNum[i].addEventListener("click",  () => { myDialog.showModal();
-     document.getElementById("r").setAttribute("value", "");
+     document.getElementById("x").setAttribute("value", "");
+     document.getElementById("y").setAttribute("value", "");
      });
 }
 
@@ -24,19 +25,29 @@ function getResult (event){
 document.querySelector(".btn").addEventListener("click", calculating);
 
  function calculating (){
-     let dataA = document.getElementById("a").getAttribute("value");
-     let dataB = document.getElementById("b").getAttribute("value");
-     let dataC = document.getElementById("c").getAttribute("value");
+     let a1 = document.getElementById("a1").getAttribute("value");
+     let b1 = document.getElementById("b1").getAttribute("value");
+     let c1 = document.getElementById("c1").getAttribute("value");
 
-     let result = (((dataC)-(dataB))/(dataA));
-      result= !isNaN(result) ?  result : "";
-      document.getElementById("r").setAttribute("value", result); 
+     let a2 = document.getElementById("a2").getAttribute("value");
+     let b2 = document.getElementById("b2").getAttribute("value");
+     let c2 = document.getElementById("c2").getAttribute("value");
+
+     
+     let resultY = (((c2*a1)-(c1*a2))/((a1*b2)-(b1*a2)));
+      let resultX = ((c1-(b1*resultY))/(a1));
+
+      resultX = !isNaN(resultX) ?  resultX : "i";
+       resultY = !isNaN(resultY) ?  resultY : "i";
+       document.getElementById("x").setAttribute("value", resultX);
+      document.getElementById("y").setAttribute("value", resultY); 
      
  } 
 
  document.querySelector(".clr").addEventListener("click", () => {
-     for (i=0; i < inptNum.length; i++){
+     for ( let i=0; i < inptNum.length; i++){
      inptNum[i].setAttribute("value", "");
-    //  document.getElementById("r").setAttribute("value", "");
+     document.getElementById("x").setAttribute("value", "");
+     document.getElementById("y").setAttribute("value", "");
           }
  })

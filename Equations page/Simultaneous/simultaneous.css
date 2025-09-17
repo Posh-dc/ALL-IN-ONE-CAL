@@ -48,12 +48,21 @@ html, body {
     }
 }
 
+.upDiv {
+     width: 100%;
+     position: relative;
+     height: 52%;
+     display: flex;
+     flex-direction: column;
+}
+
 .firstInputs {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 15%;
+    height: 100%;
+    gap: 1em;
 }
 
 .firstInput {
@@ -66,7 +75,6 @@ html, body {
     margin: 0;
     font-size: 2em;
      color: #9db2bf;
-     margin-bottom: 0.5em;
     
 }
 
@@ -80,11 +88,12 @@ html, body {
     text-align: right;
     direction: ltr;
     color: #dde6ed;
+    font-size: 1em;
 }
 
-.firstInput input::placeholder {
+.firstInput input::placeholder{
     color: #9db2bf;
-    font-size: 1em;           
+    /* font-size: 1em;            */
 }
 
 .firstInput p {
@@ -123,11 +132,10 @@ html, body {
 
 .firstH3 {
     position: relative;
-    height: 10%;
     color: #9db2bf;
     font-size: 1.7em;
     align-self: center;
-    margin: 1.5em 0 0;
+    
 }
 
 .heading {
@@ -176,4 +184,25 @@ iframe {
     padding: 0.3em 1em;
     border-radius: 0.rem;
     color: #dde6ed;
+}
+
+@media (max-height: 460px) and (orientation: landscape) {
+    .main {
+          flex-direction: row;
+          width: 65%;
+          font-size: 1.5vh;
+          margin-top: 2em;
+         justify-content: space-between;
+    }
+
+    .upDiv {
+        width: 52%;
+        height: 84%;
+    }
+    .secondInput {
+        margin-top: 8em;
+        width: 40%;
+        height: 14%;
+    }
+    
 }
