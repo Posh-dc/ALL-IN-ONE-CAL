@@ -208,7 +208,8 @@ function sendOut (){
         sendOutput = inputData;
     }
       parent.postMessage(sendOutput, '*');
-      // parent.document.querySelector("#dialog").style.display ="none";
+      parent.document.querySelector("#dialog").style.display ="none";
+      parent.document.querySelector("#prevent").style.display ="none";
       inputData ="";
       visualInputData ="";
      document.querySelector(".firstInput").setAttribute("value", visualInputData);

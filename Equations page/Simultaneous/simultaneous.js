@@ -3,9 +3,12 @@ window.addEventListener("load", ()=> document.querySelector(".main").classList.a
 
 myDialog = document.querySelector("#dialog");
 inptNum = document.querySelectorAll(".inpt");
+activeInput = null;
 
 for ( let i=0; i < inptNum.length; i++){
-     inptNum[i].addEventListener("click",  () => { myDialog.style.display ="block";
+     inptNum[i].addEventListener("click",  function() { myDialog.style.display ="block";
+          activeInput = this;
+          document.getElementById("prevent").style.display ="block"
      document.getElementById("x").setAttribute("value", "");
      document.getElementById("y").setAttribute("value", "");
      });
@@ -15,15 +18,11 @@ window.addEventListener('message', getResult)
 
 function getResult (event){
     if (event.data) { 
-       document.activeElement.setAttribute("value", event.data);
-       myDialog.style.display ="none";
+        activeInput.setAttribute("value", event.data);
          }
 }
 
-
-
 // ////// getting parameter for calculation   /////
-
 
 document.querySelector(".btn").addEventListener("click", calculating);
 

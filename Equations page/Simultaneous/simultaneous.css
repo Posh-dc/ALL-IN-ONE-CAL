@@ -147,17 +147,27 @@ html, body {
 }
 
 #dialog {
-    background: #dde6ed;
-    width: 75%;
-    height: 70%;
+    width: 80%;
+    height: 75%;
     padding: 0;
-    border: none;
+    /* border: 2px solid white; */
     border-radius: 0.8rem;
     position: absolute;
-    max-width: 30rem;
-    /* overflow: hidden; */
-    top: 15%;
-    left: 12.5%;
+     top: 12.5%;
+    /* left: 14%;  */
+    display: none;
+    align-self: center;
+    z-index: 1;
+    overflow: hidden;
+}
+#prevent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgb(0, 0, 0, 0.5); */
+    z-index: 0;
     display: none;
 }
 
@@ -165,6 +175,8 @@ iframe {
     width: 100%;
     height: 100%;
     border-radius: 0.8rem;
+   overflow: hidden;
+   padding: 0;
 }
 
 .btn {
@@ -208,4 +220,8 @@ iframe {
         height: 14%;
     }
     
+    #dialog {
+        left: 10%;
+    }
+
 }
