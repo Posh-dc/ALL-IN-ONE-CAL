@@ -47,19 +47,27 @@ html, body {
           opacity: 1;
     }
 }
+.upDiv {
+     width: 100%;
+     position: relative;
+     height: 48%;
+     display: flex;
+     flex-direction: column;
+     margin-bottom: 3.8em;
+}
 
 .firstInputs {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 15%;
+    height: 100%;
 }
 
 .firstInput {
     display: flex;
     flex-direction: row;
-    height: 40%;
+    height: 100%;
     align-items: center;
     position: relative;
     gap: 0.3em;
@@ -80,6 +88,7 @@ html, body {
     text-align: right;
     direction: ltr;
     color: #dde6ed;
+     font-size: 1em;
 }
 
 .firstInput input::placeholder {
@@ -123,11 +132,10 @@ html, body {
 
 .firstH3 {
     position: relative;
-    height: 10%;
     color: #9db2bf;
     font-size: 1.7em;
     align-self: center;
-    margin: 3.2em 0 0;
+    
 }
 
 .heading {
@@ -176,4 +184,26 @@ iframe {
     padding: 0.3em 1em;
     border-radius: 0.rem;
     color: #dde6ed;
+}
+
+@media (max-height: 460px) and (orientation: landscape) {
+    .main {
+          flex-direction: row;
+          width: 65%;
+          font-size: 1.5vh;
+          margin-top: 2em;
+         justify-content: space-between;
+         padding-top: 3em;
+    }
+
+    .upDiv {
+        width: 63%;
+        height: 90%;
+    }
+    .secondInput {
+        margin-top: 8em;
+        width: 30%;
+        height: 15%;
+    }
+    
 }

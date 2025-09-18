@@ -8,15 +8,17 @@
 </head>
 <body>
     <div class="main">
-        <div class="heading">
+       <div class="upDiv">
+          <div class="heading">
             <h2>Quadratic equation</h2>
             <br>
             <br>
             <button class="clr">Clear</button>
             <br>
             <h3>Calculate</h3>
-        </div>
-        <div class="firstInput">
+         </div>
+         <div class="firstInputs">
+            <div class="firstInput">
             <input type="text" name="" id="a" placeholder="a" class="inpt" readonly>
             <p style="font-weight: 100;">X<sup>2</sup></p>
             <p style="font-weight: 900;">+</p>
@@ -26,17 +28,15 @@
             <input type="text" name="" id="c" placeholder="c" class="inpt" readonly>
             <p>=</p>
             <p>0</p>
+         </div>
+          <h3 class="firstH3">Find the value of x in this equation <br> <span>ax<sup>2</sup> + bx + c = 0</span></h3>
         </div>
-        <div class="firstH3">
-            <h3>Find the value of x in this equation <br> <span>ax<sup>2</sup> + bx + c = 0</span></h3>
-        </div>
+       </div>
         <div class="secondInput">
             <button class="btn">Get Result</button>
              <h3>Result</h3>
-            <div class="results">
-                <input type="text" name="" id="x1" placeholder="x1" readonly>
+            <input type="text" name="" id="x1" placeholder="x1" readonly>
             <input type="text" name="" id="x2" placeholder="x2" readonly>
-            </div>
         </div>
     </div>
      <dialog id="dialog" >

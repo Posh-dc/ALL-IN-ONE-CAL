@@ -48,10 +48,27 @@ html, body {
     }
 }
 
+.upDiv {
+     width: 100%;
+     position: relative;
+     height: 48%;
+     display: flex;
+     flex-direction: column;
+}
+
+.firstInputs {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    gap: 1em;
+}
+
 .firstInput {
     display: flex;
     flex-direction: row;
-    height: 12%;
+    height: 100%;
     align-items: center;
     position: relative;
     gap: 0.3em;
@@ -71,11 +88,12 @@ html, body {
     text-align: right;
     direction: ltr;
     color: #dde6ed;
+    font-size: 1em;
 }
 
-.firstInput input::placeholder {
+.firstInput input::placeholder{
     color: #9db2bf;
-    font-size: 1.8em;           
+    font-size: 1.3em;           
 }
 
 .firstInput p {
@@ -98,6 +116,7 @@ html, body {
     color: #dde6ed;
     font-size: 2.5em;
     padding-left: 0.6rem;
+    margin-bottom: 0.7em;
 }
 .secondInput input::placeholder{
     font-size: 1.3em;
@@ -113,11 +132,10 @@ html, body {
 
 .firstH3 {
     position: relative;
-    height: 10%;
     color: #9db2bf;
     font-size: 1.7em;
     align-self: center;
-    /* margin: 1em 0 1em; */
+    
 }
 
 .heading {
@@ -128,7 +146,7 @@ html, body {
    margin-left: 1rem;
 }
 
-dialog {
+#dialog {
     background: #dde6ed;
     width: 75%;
     height: 70%;
@@ -137,7 +155,10 @@ dialog {
     border-radius: 0.8rem;
     position: absolute;
     max-width: 30rem;
-    overflow: hidden;
+    /* overflow: hidden; */
+    top: 15%;
+    left: 12.5%;
+    display: none;
 }
 
 iframe {
@@ -151,7 +172,7 @@ iframe {
     font-size: 2.2em;
     display: block;
     position: relative;
-    margin: 3em auto;
+    margin: 1.5em auto;
     padding: 0.5em 1.3em;
     border-radius: 0.2rem;
     color: #dde6ed;
@@ -168,11 +189,24 @@ iframe {
     color: #dde6ed;
 }
 
-@media  (orientation: landscape) {
-    dialog {
-        width: 50%;
-        height: 60%;
-        max-width: 70%;
+@media (max-height: 460px) and (orientation: landscape) {
+    .main {
+          flex-direction: row;
+          width: 65%;
+          font-size: 1.5vh;
+          margin-top: 2em;
+         justify-content: space-between;
+         padding-top: 3em;
+    }
+
+    .upDiv {
+        width: 52%;
+        height: 75%;
+    }
+    .secondInput {
+        margin-top: 8em;
+        width: 40%;
+        height: 17%;
     }
     
 }

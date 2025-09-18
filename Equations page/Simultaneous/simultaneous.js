@@ -5,7 +5,7 @@ myDialog = document.querySelector("#dialog");
 inptNum = document.querySelectorAll(".inpt");
 
 for ( let i=0; i < inptNum.length; i++){
-     inptNum[i].addEventListener("click",  () => { myDialog.showModal();
+     inptNum[i].addEventListener("click",  () => { myDialog.style.display ="block";
      document.getElementById("x").setAttribute("value", "");
      document.getElementById("y").setAttribute("value", "");
      });
@@ -16,8 +16,11 @@ window.addEventListener('message', getResult)
 function getResult (event){
     if (event.data) { 
        document.activeElement.setAttribute("value", event.data);
+       myDialog.style.display ="none";
          }
 }
+
+
 
 // ////// getting parameter for calculation   /////
 
