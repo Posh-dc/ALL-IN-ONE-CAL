@@ -199,7 +199,7 @@ let sendOutput ="";
 document.querySelector(".equal").addEventListener("click", sendOut);
 
 function sendOut (){
-    let containOperator = ['÷','x','-','+','.'];
+    let containOperator = ['/','*','-','+','.'];
     if (containOperator.includes(inputData.at(-1)) && inputResult ==="") {
              sendOutput = inputData.slice(0, -1);
     } else if (inputResult !==""){

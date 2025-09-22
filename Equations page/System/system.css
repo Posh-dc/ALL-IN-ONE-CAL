@@ -119,7 +119,7 @@ html, body {
     margin-bottom: 0.5em;
 }
 .secondInput input::placeholder{
-    font-size: 1.3em;
+    font-size: 1em;
     padding-left: 0.5rem;
      color: #9db2bf;
 }
