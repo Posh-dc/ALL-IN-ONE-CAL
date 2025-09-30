@@ -75,10 +75,19 @@ if (this.innerHTML === ".") {
  }
        
       if (visualInputData === "" && this.innerHTML ==="-"){
-        // The way i want a leading minus tp be handled 
+        // The way i want a leading minus to be handled 
             visualInputData = "-";
              inputData = "0"+ this.getAttribute("value") ;
               document.querySelector(".firstInput").setAttribute("value", visualInputData);
+             return;
+      } 
+if (visualInputData.length ===1 && this.innerHTML ==="x!"){
+        // working on single digit factorial  
+            visualInputData = visualInputData + this.getAttribute("value");
+             inputData = "0" + "+" + inputData + this.getAttribute("value") ;
+              document.querySelector(".firstInput").setAttribute("value", visualInputData);
+              inputResult = expressionEvaluation(inputData);
+              document.querySelector(".secondInput").setAttribute("value", inputResult);
              return;
       } 
        
@@ -96,7 +105,11 @@ if (this.innerHTML === ".") {
         // Prevent stacking up leading zeros
             visualInputData = this.innerHTML;
            document.querySelector(".firstInput").setAttribute("value", visualInputData);
-     }  else {
+     } else if (this.classList.contains("stf")){
+        /////// showing the scietinfic buttons in the visual dispaly input
+            visualInputData += this.getAttribute("value");
+             document.querySelector(".firstInput").setAttribute("value", visualInputData);
+     } else {
             visualInputData += this.innerHTML;
              document.querySelector(".firstInput").setAttribute("value", visualInputData);
       } 
@@ -109,7 +122,7 @@ if (this.innerHTML === ".") {
  } 
     //  expression evaluation base on BODMAS
     function expressionEvaluation (exp) {
-         let cal = exp.match(/\d+\.?\d*|[%+*/-]/g);
+        let cal = exp.match(/sin|cos|tan|log|ln|!|\d+\.\d+|\d+|[%+*/()-]/g);
          let result="";
          for (let i=0; i<cal.length; i++){ /*working on percentage first*/
                if(cal[i]==="%"){
@@ -146,6 +159,60 @@ if (this.innerHTML === ".") {
                  } 
             } 
         }
+
+
+//      working on  scientific button button when clicked       //////////////
+               
+             let scientificButtons= [];
+                for(let s=0; s<document.querySelectorAll(".stf").length; s++){
+                  scientificButtons.push(document.querySelectorAll(".stf")[s].innerHTML);
+                   } 
+
+            for (let i=0; i<cal.length; i++){  
+
+              // --- Handle factorial separately ---
+
+    if (cal[i] === "!") {
+        let n = parseInt(cal[i-1]);
+        function factorial(x) {
+            if (x === 0 || x === 1) return 1;
+            return x * factorial(x - 1);
+        }
+        let result = factorial(n);
+        cal.splice(i-1, 2, result.toString()); // remove number + "!"
+        i = 0;
+       
+    }
+
+               if(scientificButtons.includes(cal[i])){    /* then working on scientific butttons like sine */
+                /*converting data to number*/
+                  let firstDataNumber = parseFloat(cal[i-1]);
+                 let secondDataNumber = parseFloat(cal[i+2]);
+                switch (cal[i]){
+                  case "sin" : 
+                     result= Math.sin(secondDataNumber);
+                     break;
+                  case "cos" : 
+                    result= Math.cos(secondDataNumber);
+                      break;
+                  case "tan" : 
+                    result= Math.tan(secondDataNumber);
+                    break;
+                  case "log" : 
+                    result= Math.log10(secondDataNumber);
+                    break;
+                  case "ln" : 
+                    result= Math.log(secondDataNumber);
+                    break;
+                    
+                }
+                
+                cal.splice(i, 3, result.toString());
+                i=0;
+              } 
+        }
+
+
         for (let i=0; i<cal.length; i++){
             if(cal[i]==="*" || cal[i]==="/"){    /* then working on multiplication and division */
                 /*converting data to number*/
@@ -157,6 +224,8 @@ if (this.innerHTML === ".") {
                 i=0;
             } 
         }
+
+
         for (let i=0; i<cal.length; i++){ /* then working on addision and subtraction*/
             
              if  (cal[i]==="+" || cal[i]==="-"){
@@ -169,9 +238,11 @@ if (this.innerHTML === ".") {
                 i=0;
             }
          }
-   return (!isNaN(result)) ?  result : "Bad expression";
-        
+
+
+      return (!isNaN(result)) ?  result : "Bad expression"
     }
+
 
 // calculating function
 function calculating (a, b, c) {
