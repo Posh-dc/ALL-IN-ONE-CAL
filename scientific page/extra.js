@@ -132,43 +132,39 @@ if (visualInputData.length ===1 && this.innerHTML ==="x!"){
         let cal = exp.match(/sin|cos|tan|log|ln|!|\d+\.\d+|\d+|[%+*/()-]/g);
          let result="";
 
-          for (let i = 0; i < cal.length; i++) {
-  if (cal[i] === "(") {
-    let j = i + 1;
-    let bracketCount = 1;
+          for (let i=0; i<cal.length; i++){
+             if (cal[i]==="(" ){
+                 
 
-    // Find matching closing parenthesis
-    while (j < cal.length && bracketCount > 0) {
-      if (cal[j] === "(") bracketCount++;
-      else if (cal[j] === ")") bracketCount--;
-      j++;
-    }
+                  // 
+                  let bracketCount = 1;
+            let j = i + 1;
 
-    // If we didn’t find a matching closing parenthesis
-    // just evaluate everything after "(" up to current end
-    if (bracketCount !== 0) {
-      let  accumulateBracketParameter= cal.slice(i + 1,);
+            // Loop to find the matching closing parenthesis
+            while (j < cal.length && cal[j] !==")") {
+                if (cal[j] !== "(") {
+                  let  accumulateBracketParameter= cal.slice(i + 1,);
               let accumulateBracketParameterResult = expressionEvaluation(accumulateBracketParameter.join(""));
               result= accumulateBracketParameterResult;
                 cal.splice(i, cal.length, result.toString())
                 i=0;
-                    
-    } else {
-//       let  accumulateBracketParameter= cal.slice(i + 1,j-1);
-//               let accumulateBracketParameterResult = expressionEvaluation(accumulateBracketParameter.join(""));
-//               result= accumulateBracketParameterResult;
-//                 cal.splice(i, j-1, result.toString())
-//                 i=0;
-      // Properly closed bracket → normal evaluation
-      let inside = cal.slice(i + 1, j - 1).join("");
-      let innerResult = expressionEvaluation(inside);
-      cal.splice(i, j - i, innerResult.toString());
-      i = 0;
-      
-    }
-  }
-}
+                    j++;
+                } else if (cal[j] === ")") {
+                  let  accumulateBracketParameter= cal.slice(i + 1, j - 1);
+       
+              let accumulateBracketParameterResult = expressionEvaluation(accumulateBracketParameter.join(""));
+              result= accumulateBracketParameterResult;
+                cal.splice(i, j, result.toString())
+                i=0;
+                     break;
+                }
+                // j++;
+              }
+             
 
+           }
+          
+        }
 
          for (let i=0; i<cal.length; i++){ /*working on percentage first*/
                if(cal[i]==="%"){
@@ -255,7 +251,7 @@ if (visualInputData.length ===1 && this.innerHTML ==="x!"){
                     
                 }
                 
-                cal.splice(i, 2, result.toString());
+                cal.splice(i, 3, result.toString());
                 i=0;
               } 
         }
