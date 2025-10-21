@@ -59,7 +59,7 @@ if ((visualInputData ==="" && containOperatorAsFirst.includes(this.getAttribute(
              return;
       }
 
-             let containOperator = ['÷','x','-','+','.'];
+             let containOperator = ['÷','x','-','+','.',"*"];
       if (containOperator.includes(visualInputData.at(-1))&&(this.classList.contains("operator"))){
         // Preventing stacking up operators ///////
          visualInputData = visualInputData.slice(0, -1) + this.innerHTML;
@@ -67,7 +67,13 @@ if ((visualInputData ==="" && containOperatorAsFirst.includes(this.getAttribute(
          inputData = inputData.slice(0,-1) + this.getAttribute("value");
          document.querySelector(".secondInput").setAttribute("value", inputResult);
             return;
-      }
+      }else if (containOperator.includes(inputData.at(-1)) &&(this.classList.contains("operator"))){
+   visualInputData += this.innerHTML;
+            document.querySelector(".firstInput").setAttribute("value", visualInputData);
+          inputData = inputData.slice(0,-1) + this.getAttribute("value");
+         document.querySelector(".secondInput").setAttribute("value", inputResult);
+            return;
+}
 if (this.innerHTML === ".") {
     let parts = visualInputData.split(/[\+\-÷x]/);
     let lastPart = parts[parts.length - 1];
@@ -88,7 +94,27 @@ if (visualInputData.at(-1)==="(" && this.innerHTML ==="-"){
   inputData += "0+"
 }
 
-if (visualInputData.length ===1 && this.innerHTML ==="x!"){
+// working with calculations like 5sin(563) i.e scietific buttins immediately after number  ///
+let numbers = ["1","2","3","4","5","6","7","8","9","0"];
+if (numbers.includes(visualInputData.at(-1)) && this.classList.contains("numb")){
+  visualInputData += (this.classList.contains("numbpro"))?  this.innerHTML : this.getAttribute("value");
+ 
+ document.querySelector(".firstInput").setAttribute("value", visualInputData);
+  inputData = inputData + "*" + this.getAttribute("value");
+ inputResult = expressionEvaluation(inputData);
+              document.querySelector(".secondInput").setAttribute("value", inputResult);
+             return;
+} else if (inputData.at(-1)===")" && numbers.includes(this.innerHTML)){
+  visualInputData += this.innerHTML;
+  document.querySelector(".firstInput").setAttribute("value", visualInputData);
+  inputData = inputData + "*" + this.getAttribute("value");
+ inputResult = expressionEvaluation(inputData);
+   document.querySelector(".secondInput").setAttribute("value", inputResult);
+             return;
+}
+//  End  of // working with calculations like 5sin(563) i.e scietific buttins immediately after number
+
+if (this.innerHTML ==="x!"){
         // working on single digit factorial  
             visualInputData = visualInputData + this.getAttribute("value");
              inputData = "0" + "+" + inputData + this.getAttribute("value") ;
@@ -132,7 +158,7 @@ if (visualInputData.length ===1 && this.innerHTML ==="x!"){
         let cal = exp.match(/sin|cos|tan|log|ln|!|\d+\.\d+|\d+|[%+*/()-]/g);
          let result="";
 
-          for (let i = 0; i < cal.length; i++) {
+          for (let i = 0; i < cal.length; i++) { /*  ///     working on bracket   */
   if (cal[i] === "(") {
     let j = i + 1;
     let bracketCount = 1;
@@ -144,7 +170,7 @@ if (visualInputData.length ===1 && this.innerHTML ==="x!"){
       j++;
     }
 
-    // If we didn’t find a matching closing parenthesis
+    // If i didn’t find a matching closing parenthesis
     // just evaluate everything after "(" up to current end
     if (bracketCount !== 0) {
       let  accumulateBracketParameter= cal.slice(i + 1,);
@@ -154,11 +180,6 @@ if (visualInputData.length ===1 && this.innerHTML ==="x!"){
                 i=0;
                     
     } else {
-//       let  accumulateBracketParameter= cal.slice(i + 1,j-1);
-//               let accumulateBracketParameterResult = expressionEvaluation(accumulateBracketParameter.join(""));
-//               result= accumulateBracketParameterResult;
-//                 cal.splice(i, j-1, result.toString())
-//                 i=0;
       // Properly closed bracket → normal evaluation
       let inside = cal.slice(i + 1, j - 1).join("");
       let innerResult = expressionEvaluation(inside);
