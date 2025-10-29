@@ -1,6 +1,7 @@
 let inputData = "";
 let visualInputData = "";
 let inputResult = "";
+let change = "DEG";
 
 window.addEventListener("load", ()=> document.querySelector(".main").classList.add("animate"));
 
@@ -16,6 +17,15 @@ for (let i=0; i<notShowButtonNumber; i++){
 }
 
 function functionalCal(){  
+
+if(this.classList.contains("change")){ /* cnanging fron RAD to DEG */
+  this.innerHTML= (this.innerHTML==="RAD")? "DEG" :"RAD";
+  change =this.innerHTML;
+  inputResult= expressionEvaluation(inputData);
+   document.querySelector(".secondInput").setAttribute("value", inputResult);
+
+}
+
     if(this.classList.contains("clear")){   /*clear everything when  a clear button is pressed*/
            inputData = ""; 
            visualInputData = "";
@@ -24,6 +34,130 @@ function functionalCal(){  
            document.querySelector(".secondInput").setAttribute("value", inputResult);
     }
     if (this.classList.contains("del")){   /*deleling last inputs every time delete button is pressed*/
+        
+           
+           /* deleting PI and exponential(e) related conditions */
+        if ((visualInputData.at(-1)==="e" && inputData.at(-1)==="3") 
+          || (visualInputData.at(-1)==="π" && inputData.at(-1)==="5" )){
+                    //  before pi or e
+                 let deletVisualInputData =(visualInputData.at(-2)==="x")?visualInputData.slice(0, visualInputData.length -2):
+                  visualInputData.slice(0, visualInputData.length -1);
+        visualInputData = deletVisualInputData;
+        document.querySelector(".firstInput").setAttribute("value", visualInputData); 
+       let deletInputData= (inputData.at(-11)==="*")?inputData.slice(0, inputData.length-11): inputData.slice(0, inputData.length-10);
+        inputData = deletInputData;
+        inputResult= expressionEvaluation(inputData);
+        document.querySelector(".secondInput").setAttribute("value", inputResult);
+            return;
+          }
+          if ((visualInputData.at(-1)==="e" && inputData.at(-1)==="*") 
+          || (visualInputData.at(-1)==="π" && inputData.at(-1)==="*" )){
+                    //  after  pi or e
+                 let deletVisualInputData = visualInputData.slice(0, visualInputData.length -1);
+        visualInputData = deletVisualInputData;
+        document.querySelector(".firstInput").setAttribute("value", visualInputData); 
+       let deletInputData=(inputData.at(-12)==="*")?inputData.slice(0, inputData.length-12):inputData.slice(0, inputData.length-11);
+        inputData = deletInputData;
+        inputResult= expressionEvaluation(inputData);
+        document.querySelector(".secondInput").setAttribute("value", inputResult);
+            return;
+          }
+          /* deleting PI and exponential(e) related conditions  ends here*/
+          
+           /* deleting sin cos tan log etc related conditions */
+                let scienDelete =["*sin(","*cos(","*tan(","*log(","ln(0+","*ln(","sin(","cos(","tan(","log(","ln(","⁻¹("];
+
+                for(let i=0; i<scienDelete.length; i++){
+                  if (inputData.endsWith(scienDelete[i]) || visualInputData.endsWith(scienDelete[i])){
+                  let  deletVisualInputData;
+                     let deletInputData;
+                         switch (scienDelete[i]) {
+                          case "ln(0+" :
+                                deletVisualInputData =(visualInputData.at(-4)==="x")?visualInputData.slice(0, visualInputData.length -4):
+                                 visualInputData.slice(0, visualInputData.length-3);
+                             deletInputData =(inputData.at(-6)==="*")?inputData.slice(0, inputData.length -6):inputData.slice(0, inputData.length -5);
+                            break;
+                            case "⁻¹(" :
+                              if (visualInputData.endsWith("⁻¹(")&& inputData.endsWith("0+")){
+                              deletInputData =(inputData.at(-9)==="*")?inputData.slice(0, inputData.length -9): inputData.slice(0, inputData.length-8);
+                              }else{    
+                              deletInputData =(inputData.at(-7)==="*")?inputData.slice(0, inputData.length -7): inputData.slice(0, inputData.length-6);
+                              }
+                              deletVisualInputData =(visualInputData.at(-7)==="x")?visualInputData.slice(0, visualInputData.length -7):
+                                    visualInputData.slice(0, visualInputData.length-6);
+                              break;
+                        default :
+                               if (visualInputData.endsWith(scienDelete[i]) && inputData.endsWith("0+")){
+                                deletVisualInputData =(visualInputData.at(-5)==="x")?visualInputData.slice(0, visualInputData.length -5):
+                                 visualInputData.slice(0, visualInputData.length -scienDelete[i].length);
+                             deletInputData =(inputData.at(-7)==="*")?inputData.slice(0, inputData.length -7):inputData.slice(0, inputData.length -6);
+                            }
+                          else  if (inputData.at(-5)==="*"){
+                     deletVisualInputData=(visualInputData.at(-5)==="x")?visualInputData.slice(0, visualInputData.length -5):
+                               visualInputData.slice(0, visualInputData.length -4);
+                         deletInputData = inputData.slice(0, inputData.length-5);
+                            }else{
+                             deletVisualInputData =(visualInputData.endsWith("ln(") && visualInputData.at(-4) !=="x" )? visualInputData.slice(0, visualInputData.length -3):
+                              visualInputData.slice(0, visualInputData.length -4);
+                             deletInputData = inputData.slice(0, inputData.length-4);
+                            }
+                            
+                         }     
+        visualInputData = deletVisualInputData;
+        document.querySelector(".firstInput").setAttribute("value", visualInputData);
+        inputData = deletInputData;
+        inputResult= expressionEvaluation(inputData);
+        document.querySelector(".secondInput").setAttribute("value", inputResult);
+            return;
+                  }
+                }
+           /* deleting sin cos tan log etc related conditions ends here */
+
+          //  /* deleting bracket related conditions */   and square root 
+
+           if (visualInputData.at(-1)==="√" && inputData.at(-2)==="*" && visualInputData.at(-2)!=="x"){
+            let deletVisualInputData = visualInputData.slice(0, visualInputData.length -1);
+        visualInputData = deletVisualInputData;
+        document.querySelector(".firstInput").setAttribute("value", visualInputData);
+        let deletInputData = inputData.slice(0, inputData.length-2);
+        inputData = deletInputData;
+        inputResult= expressionEvaluation(inputData);
+        document.querySelector(".secondInput").setAttribute("value", inputResult);
+            return
+           }
+        if ((visualInputData.at(-1)===")" && inputData.at(-1)==="*") || 
+        (visualInputData.at(-1)==="(" && inputData.at(-2)==="*" && visualInputData.at(-2)!=="x" )){
+                 let deletVisualInputData = visualInputData.slice(0, visualInputData.length -1);
+        visualInputData = deletVisualInputData;
+        document.querySelector(".firstInput").setAttribute("value", visualInputData);
+        let deletInputData = inputData.slice(0, inputData.length-2);
+        inputData = deletInputData;
+        inputResult= expressionEvaluation(inputData);
+        document.querySelector(".secondInput").setAttribute("value", inputResult);
+            return
+          }
+           if (visualInputData.at(-1)==="(" && inputData.at(-1)==="+"){
+            let deletVisualInputData =(visualInputData.at(-2)==="x")?visualInputData.slice(0, visualInputData.length-2): visualInputData.slice(0, visualInputData.length -1);
+        visualInputData = deletVisualInputData;
+        document.querySelector(".firstInput").setAttribute("value", visualInputData);
+        let deletInputData =(inputData.at(-4)==="*")?inputData.slice(0, inputData.length-4): inputData.slice(0, inputData.length-3);
+        inputData = deletInputData;
+        inputResult= expressionEvaluation(inputData);
+        document.querySelector(".secondInput").setAttribute("value", inputResult);
+            return;
+          }
+          if (visualInputData.at(-1)==="-" && inputData.at(-1)==="-" && visualInputData.at(-2)==="(" && inputData.at(-2)==="0"){
+                let deletVisualInputData = visualInputData.slice(0, visualInputData.length -1);
+        visualInputData = deletVisualInputData;
+        document.querySelector(".firstInput").setAttribute("value", visualInputData);
+        let deletInputData = inputData.slice(0, inputData.length-2);
+        inputData = deletInputData;
+        inputResult= expressionEvaluation(inputData);
+        document.querySelector(".secondInput").setAttribute("value", inputResult);
+            return;
+          }
+           /* deleting bracket related conditions ends here */
+
         let deletVisualInputData = visualInputData.slice(0, visualInputData.length -1);
         visualInputData = deletVisualInputData;
         document.querySelector(".firstInput").setAttribute("value", visualInputData);
@@ -32,6 +166,7 @@ function functionalCal(){  
         inputResult= expressionEvaluation(inputData);
         document.querySelector(".secondInput").setAttribute("value", inputResult);
     }
+
  if (this.classList.contains("equal") && inputResult !== "" && inputResult !=="Bad expression"){ /*when equal button is pressed*/
     /*when equal button is pressed*/
             inputData = "0"+ inputResult.toString();
@@ -59,6 +194,14 @@ if ((visualInputData ==="" && containOperatorAsFirst.includes(this.getAttribute(
              return;
       }
 
+if (inputData.at(-1)==="(" && (this.innerHTML ==="-" )){ 
+  inputData += "0" ;       /*setting 0 after bracket open for effective calculation */
+}else if ((inputData.at(-1)==="(" || inputData.endsWith("(0+") || inputData.endsWith("(0-"))
+  && (this.innerHTML ==="x" || this.innerHTML ==="÷" || this.innerHTML ==="+")){
+  return;
+}else if (inputData.at(-1)==="("){
+   inputData += "0+"
+}
              let containOperator = ['÷','x','-','+','.',"*"];
       if (containOperator.includes(visualInputData.at(-1))&&(this.classList.contains("operator"))){
         // Preventing stacking up operators ///////
@@ -88,13 +231,7 @@ if (this.innerHTML === ".") {
              return;
       } 
 
-if (visualInputData.at(-1)==="(" && this.innerHTML ==="-"){ 
-  inputData += "0" ;       /*setting 0 after bracket open for effective calculation */
-}else if (visualInputData.at(-1)==="("){
-  inputData += "0+"
-}
-
-// working with calculations like 5sin(563) i.e scietific buttins immediately after number  ///
+// working with calculations like 5sin(563) i.e scietific buttons immediately after number  ///
 let numbers = ["1","2","3","4","5","6","7","8","9","0"];
 if (numbers.includes(visualInputData.at(-1)) && this.classList.contains("numb")){
   visualInputData += (this.classList.contains("numbpro"))?  this.innerHTML : this.getAttribute("value");
@@ -104,7 +241,8 @@ if (numbers.includes(visualInputData.at(-1)) && this.classList.contains("numb"))
  inputResult = expressionEvaluation(inputData);
               document.querySelector(".secondInput").setAttribute("value", inputResult);
              return;
-} else if (inputData.at(-1)===")" && numbers.includes(this.innerHTML)){
+} else if ((inputData.at(-1)===")" ||visualInputData.at(-1)==="π" ||visualInputData.at(-1)==="e")
+  && (numbers.includes(this.innerHTML)&& inputData.at(-1)!=="*")){
   visualInputData += this.innerHTML;
   document.querySelector(".firstInput").setAttribute("value", visualInputData);
   inputData = inputData + "*" + this.getAttribute("value");
@@ -134,15 +272,15 @@ if (this.innerHTML ==="x!"){
              document.querySelector(".firstInput").setAttribute("value", visualInputData);
               document.querySelector(".secondInput").setAttribute("value", inputResult);
               return;
-     } else if (visualInputData === "0"){
-        // Prevent stacking up leading zeros
-            visualInputData = this.innerHTML;
-           document.querySelector(".firstInput").setAttribute("value", visualInputData);
-     } else if (this.classList.contains("stf")){
+     }  else if (this.classList.contains("stf")){
         /////// showing the scietinfic buttons in the visual dispaly input
             visualInputData += this.getAttribute("value");
              document.querySelector(".firstInput").setAttribute("value", visualInputData);
-     } else {
+     }else if (visualInputData === "0"){
+        // Prevent stacking up leading zeros
+            visualInputData = this.innerHTML;
+           document.querySelector(".firstInput").setAttribute("value", visualInputData);
+     } else {
             visualInputData += this.innerHTML;
              document.querySelector(".firstInput").setAttribute("value", visualInputData);
       } 
@@ -155,7 +293,7 @@ if (this.innerHTML ==="x!"){
  } 
     //  expression evaluation base on BODMAS
     function expressionEvaluation (exp) {
-        let cal = exp.match(/sin|cos|tan|log|ln|!|\d+\.\d+|\d+|[%+*/()-]/g);
+        let cal = exp.match(/sin⁻¹|cos⁻¹|tan⁻¹|sin|\^|√|cos|tan|log|ln|!|\d+\.\d+|\d+|[%+*/()-]/g);
          let result="";
 
           for (let i = 0; i < cal.length; i++) { /*  ///     working on bracket   */
@@ -190,6 +328,29 @@ if (this.innerHTML ==="x!"){
   }
 }
 
+for (let i=0; i<cal.length; i++){
+            if(cal[i]==="^"){    /*  working on raise to power */
+                /*converting data to number*/
+                  let firstDataNumber = parseFloat(cal[i-1]);
+                 let secondDataNumber = parseFloat(cal[i+1]);
+                result= calculating(firstDataNumber,cal[i],secondDataNumber);
+
+                cal.splice(i-1, 3, result.toString());
+                i=0;
+            } 
+        }
+
+for (let i=0; i<cal.length; i++){
+            if(cal[i]==="√"){    /*  working on raise to power */
+                /*converting data to number*/
+//                   let firstDataNumber = parseFloat(cal[i-1]);
+                 let secondDataNumber = parseFloat(cal[i+1]);
+                result= Math.sqrt(secondDataNumber);
+
+                cal.splice(i, 2, result.toString());
+                i=0;
+            } 
+        }
 
          for (let i=0; i<cal.length; i++){ /*working on percentage first*/
                if(cal[i]==="%"){
@@ -227,7 +388,6 @@ if (this.innerHTML ==="x!"){
             } 
         }
 
-
 //      working on  scientific button button when clicked       //////////////
                
              let scientificButtons= [];
@@ -250,14 +410,22 @@ if (this.innerHTML ==="x!"){
         i = 0;
        
     }
-
                if(scientificButtons.includes(cal[i])){    /* then working on scientific butttons like sine */
                 /*converting data to number*/
                   let firstDataNumber = parseFloat(cal[i-1]);
-                      let secondDataNumber = parseFloat(cal[i+1]);
+             let secondDataNumber =(change ==="DEG")? parseFloat(cal[i+1])*(Math.PI/180):parseFloat(cal[i+1]);
                
                
                 switch (cal[i]){
+                  case "sin⁻¹" : 
+                     result= Math.asin(secondDataNumber);
+                     break;
+                  case "cos⁻¹" : 
+                    result= Math.acos(secondDataNumber);
+                      break;
+                  case "tan⁻¹" : 
+                    result= Math.atan(secondDataNumber);
+                    break;
                   case "sin" : 
                      result= Math.sin(secondDataNumber);
                      break;
@@ -281,7 +449,6 @@ if (this.innerHTML ==="x!"){
               } 
         }
 
-
         for (let i=0; i<cal.length; i++){
             if(cal[i]==="*" || cal[i]==="/"){    /* then working on multiplication and division */
                 /*converting data to number*/
@@ -293,7 +460,6 @@ if (this.innerHTML ==="x!"){
                 i=0;
             } 
         }
-
 
         for (let i=0; i<cal.length; i++){ /* then working on addision and subtraction*/
             
@@ -328,6 +494,9 @@ function calculating (a, b, c) {
             case  "*" :
                 return a*c;
             break;
+            case "^" :
+              return Math.pow(a,c);
+              break;
             default :
             return "no value found"
     }
