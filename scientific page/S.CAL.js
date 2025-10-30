@@ -415,16 +415,18 @@ for (let i=0; i<cal.length; i++){
                   let firstDataNumber = parseFloat(cal[i-1]);
              let secondDataNumber =(change ==="DEG")? parseFloat(cal[i+1])*(Math.PI/180):parseFloat(cal[i+1]);
                
-               
                 switch (cal[i]){
                   case "sin⁻¹" : 
-                     result= Math.asin(secondDataNumber);
+                     result= Math.asin(parseFloat(cal[i+1]));
+                     if (change === "DEG") result = result * (180/Math.PI);
                      break;
                   case "cos⁻¹" : 
-                    result= Math.acos(secondDataNumber);
+                    result= Math.acos(parseFloat(cal[i+1]));
+                    if (change === "DEG") result = result * (180/Math.PI);
                       break;
                   case "tan⁻¹" : 
-                    result= Math.atan(secondDataNumber);
+                    result= Math.atan(parseFloat(cal[i+1]));
+                    if (change === "DEG") result = result * (180/Math.PI);
                     break;
                   case "sin" : 
                      result= Math.sin(secondDataNumber);
@@ -436,12 +438,11 @@ for (let i=0; i<cal.length; i++){
                     result= Math.tan(secondDataNumber);
                     break;
                   case "log" : 
-                    result= Math.log10(secondDataNumber);
+                    result= Math.log10(parseFloat(cal[i+1]));
                     break;
                   case "ln" : 
-                    result= Math.log(secondDataNumber);
+                    result= Math.log(parseFloat(cal[i+1]));
                     break;
-                    
                 }
                 
                 cal.splice(i, 2, result.toString());
@@ -474,8 +475,7 @@ for (let i=0; i<cal.length; i++){
             }
          }
 
-
-      return (!isNaN(result)) ?  result : "Bad expression"
+      return (!isNaN(result)) ?  result : ""
     }
 
 
